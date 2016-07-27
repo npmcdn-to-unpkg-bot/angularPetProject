@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app='listaTelefonica'>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script type='text/javascript' src='angular/angular.js'></script>
+    <script>
+        angular.module('listaTelefonica', []);
+        angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope){
+               $scope.app = 'Lista Telefonica'; 
+               $scope.nome = ''; 
+               $scope.telefone = ''; 
+
+               $scope.lista = [
+                    {nome: 'Gregory', tel: '1235'},
+                    {nome: 'Susy', tel: '3215'},
+                    {nome: 'Valdete', tel: '4565'},
+               ];
+
+               $scope.salvar = function (contato) {
+                    $scope.lista.push(contato);
+                    delete $scope.contato;
+               }
+        });
+    </script>
+</head>
+<body ng-controller='listaTelefonicaController'>
+    <h1>{{app}}</h1>
+    
+
+    <ul>
+        <li ng-repeat='contato in lista'>{{contato.nome}} | {{contato.tel}}</li>
+    </ul>
+
+    <input type="text" placeholder="nome" ng-model='contato.nome'>
+    <input type="text" placeholder="telefone" ng-model='contato.tel'>
+    <button ng-click='salvar(contato)'>Salvar</button>
+    {{contato}}
+</body>
+</html>
