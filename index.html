@@ -36,7 +36,7 @@
 
     <input type="text" placeholder="nome" ng-model='contato.nome'>
     <input type="text" placeholder="telefone" ng-model='contato.tel'>
-    <button ng-click='salvar(contato)'>Salvar</button>
+    <button ng-click='salvar(contato)' ng-disabled='!contato.nome || !contato.tel'>Salvar</button>
     {{contato}}
 </body>
 </html>
