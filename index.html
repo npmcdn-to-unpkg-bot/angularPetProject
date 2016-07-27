@@ -13,6 +13,13 @@
                $scope.nome = ''; 
                $scope.telefone = ''; 
 
+               $scope.operadoras = [
+                    {codigo: 1, nome:'Vivo'},
+                    {codigo: 2, nome:'Claro'},
+                    {codigo: 3, nome:'Tim'},
+                    {codigo: 4, nome:'Oi'},
+               ];
+
                $scope.lista = [
                     {nome: 'Gregory', tel: '1235'},
                     {nome: 'Susy', tel: '3215'},
@@ -31,11 +38,16 @@
     
 
     <ul>
-        <li ng-repeat='contato in lista'>{{contato.nome}} | {{contato.tel}}</li>
+        <li ng-repeat='contato in lista'>{{contato.nome}} | {{contato.tel}} | {{contato.operadora.nome}}</li>
     </ul>
 
     <input type="text" placeholder="nome" ng-model='contato.nome'>
     <input type="text" placeholder="telefone" ng-model='contato.tel'>
+
+    <select name="operadoras" id="oper" ng-model='contato.operadora' ng-options='operadora.nome for operadora in operadoras'>
+        <option value="">Selecione uma operadora</option>
+    </select>
+
     <button ng-click='salvar(contato)' ng-disabled='!contato.nome || !contato.tel'>Salvar</button>
     {{contato}}
 </body>
