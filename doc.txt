@@ -2,3 +2,19 @@
 - ngController
     - Applyies at an view (div, table, body e etc)
 - ngBind
+- ng-repeat
+- ng-model
+    - inputs
+    - selects
+    - text areas
+-  ngClick
+    - ngFocus
+    - ngDoubleClick
+    - etc
+- ng-disable
+- ng-show
+- ng-hide
+- ng-options
+    - For select options
+- ngClass
+    {classe1, classe2}
