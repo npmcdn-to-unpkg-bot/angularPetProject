@@ -15,7 +15,7 @@
             font-weight: bold;
         }
     </style>
-    <script type='text/javascript' src='angular/angular.js'></script>
+    <script type='text/javascript' src='angular.js'></script>
     <script>
         // Creating a module
         angular.module('listaTelefonica', []);
@@ -84,15 +84,27 @@
     </table>
 
 
-    <input type="text" placeholder="nome" ng-model='contato.nome'>
-    <input type="text" placeholder="telefone" ng-model='contato.tel'>
+    Valido: {{contactForm.$valid}}
+    Invalido: {{contactForm.$invalid}}
+    <form name='contactForm'>
+        <input type="text" placeholder="nome" ng-model='contato.nome' required name="nome">
+        <input type="text" placeholder="telefone" ng-model='contato.tel' required name="tel">
+    </form>
+
+    <div ng-show='contactForm.nome.$invalid'>
+        <p>Preencha o nome</p>
+    </div>
+
+    <div ng-show='contactForm.tel.$invalid'>
+        <p>Preencha o telefone</p>
+    </div>
 
     <select name="operadoras" id="oper" ng-model='contato.operadora' 
         ng-options='operadora.codigo as operadora.nome group by operadora.categ for operadora in operadoras'>
         <option value="">Selecione uma operadora</option>
     </select>
 
-    <button ng-click='salvar(contato)' ng-disabled='!contato.nome || !contato.tel'>Salvar</button>
+    <button ng-click='salvar(contato)' ng-disabled='contactForm.$invalid'>Salvar</button>
     <button ng-click='apagar(lista)' ng-show='isContatoSelecionado(lista)' ng-disabled='!isContatoSelecionado(lista)'>Apagar</button>
     <!-- {{10==2}} -->
 

@@ -20,3 +20,5 @@
     {classe1, classe2}
 - ng-style
 - ng-if
+- ng-include
+- form.$valid and form.$invalid
