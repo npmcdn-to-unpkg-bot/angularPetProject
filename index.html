@@ -10,6 +10,10 @@
         .selecionado {
             background-color: yellow;
         }
+
+        .negrito {
+            font-weight: bold;
+        }
     </style>
     <script type='text/javascript' src='angular/angular.js'></script>
     <script>
@@ -41,6 +45,12 @@
                     $scope.lista.push(contato);
                     delete $scope.contato;
                }
+
+               $scope.apagar = function (contatos) {
+                    $scope.lista = contatos.filter(function (contato){
+                          if (!contato.selecionado) return contato;  
+                    });
+               };
         });
     </script>
 </head>
@@ -57,7 +67,7 @@
             <td>Telefone</td>
             <td>Operadora</td>
         </tr>
-        <tr ng-repeat='contato in lista' ng-class='{selecionado: contato.selecionado }'>
+        <tr ng-repeat='contato in lista' ng-class='{"selecionado negrito": contato.selecionado }'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
             <td>{{contato.nome}}</td>
             <td>{{contato.tel}}</td>
@@ -75,7 +85,7 @@
     </select>
 
     <button ng-click='salvar(contato)' ng-disabled='!contato.nome || !contato.tel'>Salvar</button>
-    {{contato}}
+    <button ng-click='apagar(lista)' ng-disabled='!contato.nome || !contato.tel'>Apagar</button>
     <!-- {{10==2}} -->
 </body>
 </html>
