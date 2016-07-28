@@ -89,7 +89,7 @@
     Invalido: {{contactForm.$invalid}}
     <form name='contactForm'>
         <input type="text" placeholder="nome" ng-model='contato.nome' ng-required="true" name="nome" ng-minlength="10">
-        <input type="text" placeholder="telefone" ng-model="contato.tel" ng-required="true" name="tel">
+        <input type="text" placeholder="telefone" ng-model="contato.tel" ng-required="true" name="tel" ng-pattern="/^\d{4,5}-\d{4}$/">
     </form>
 
     <div ng-show='contactForm.nome.$error.required && contactForm.nome.$dirty'>
@@ -102,6 +102,10 @@
 
     <div ng-show='contactForm.tel.$invalid  && contactForm.tel.$dirty'>
         <p>Preencha o telefone</p>
+    </div>
+
+    <div ng-show='contactForm.tel.$error.pattern'>
+        <p>Preencha o telefone com o formato DDDDD-DDDD</p>
     </div>
 
     <select name="operadoras" id="oper" ng-model='contato.operadora' 
