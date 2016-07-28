@@ -44,6 +44,7 @@
                $scope.salvar = function (contato) {
                     $scope.lista.push(contato);
                     delete $scope.contato;
+                    $scope.contactForm.$setPristine();
                }
 
                $scope.apagar = function (contatos) {
@@ -91,11 +92,11 @@
         <input type="text" placeholder="telefone" ng-model='contato.tel' required name="tel">
     </form>
 
-    <div ng-show='contactForm.nome.$invalid'>
+    <div ng-show='contactForm.nome.$invalid && contactForm.nome.$dirty'>
         <p>Preencha o nome</p>
     </div>
 
-    <div ng-show='contactForm.tel.$invalid'>
+    <div ng-show='contactForm.tel.$invalid  && contactForm.tel.$dirty'>
         <p>Preencha o telefone</p>
     </div>
 
