@@ -88,12 +88,16 @@
     Valido: {{contactForm.$valid}}
     Invalido: {{contactForm.$invalid}}
     <form name='contactForm'>
-        <input type="text" placeholder="nome" ng-model='contato.nome' required name="nome">
-        <input type="text" placeholder="telefone" ng-model='contato.tel' required name="tel">
+        <input type="text" placeholder="nome" ng-model='contato.nome' ng-required="true" name="nome" ng-minlength="10">
+        <input type="text" placeholder="telefone" ng-model="contato.tel" ng-required="true" name="tel">
     </form>
 
-    <div ng-show='contactForm.nome.$invalid && contactForm.nome.$dirty'>
+    <div ng-show='contactForm.nome.$error.required && contactForm.nome.$dirty'>
         <p>Preencha o nome</p>
+    </div>
+
+    <div ng-show='contactForm.nome.$error.minlength'>
+        <p>Preencha ao menos 10 caracteres</p>
     </div>
 
     <div ng-show='contactForm.tel.$invalid  && contactForm.tel.$dirty'>
