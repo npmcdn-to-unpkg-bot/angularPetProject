@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="">
     <script type='text/javascript' src='angular/angular.js'></script>
     <script>
+        // Creating a module
         angular.module('listaTelefonica', []);
+
+        // Recovering a module and setting up a new controller
         angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope){
                $scope.app = 'Lista Telefonica'; 
                $scope.nome = ''; 
-               $scope.telefone = ''; 
+               $scope.telefone = '';
+               $scope.subtitulo = 'Subtitulo' ;
 
                $scope.operadoras = [
                     {codigo: 1, nome:'Vivo'},
@@ -35,6 +39,7 @@
 </head>
 <body ng-controller='listaTelefonicaController'>
     <h1>{{app}}</h1>
+    <h3 ng-bind='subtitulo'></h3>
     
 
     <ul>
@@ -44,7 +49,7 @@
     <input type="text" placeholder="nome" ng-model='contato.nome'>
     <input type="text" placeholder="telefone" ng-model='contato.tel'>
 
-    <select name="operadoras" id="oper" ng-model='contato.operadora' ng-options='operadora.nome for operadora in operadoras'>
+    <select name="operadoras" id="oper" ng-model='contato.operadora' ng-options='operadora.codigo as operadora.nome for operadora in operadoras'>
         <option value="">Selecione uma operadora</option>
     </select>
 

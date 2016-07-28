@@ -1,0 +1,4 @@
+- ngApp
+- ngController
+    - Applyies at an view (div, table, body e etc)
+- ngBind
