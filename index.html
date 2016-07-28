@@ -16,9 +16,10 @@
         }
     </style>
     <script type='text/javascript' src='angular.js'></script>
+    <script type='text/javascript' src='angular-messages.js'></script>
     <script>
         // Creating a module
-        angular.module('listaTelefonica', []);
+        angular.module('listaTelefonica', ['ngMessages']);
 
         // Recovering a module and setting up a new controller
         angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope){
@@ -92,12 +93,16 @@
         <input type="text" placeholder="telefone" ng-model="contato.tel" ng-required="true" name="tel" ng-pattern="/^\d{4,5}-\d{4}$/">
     </form>
 
-    <div ng-show='contactForm.nome.$error.required && contactForm.nome.$dirty'>
-        <p>Preencha o nome</p>
-    </div>
+    <div ng-messages='contactForm.nome.$error'>
 
-    <div ng-show='contactForm.nome.$error.minlength'>
-        <p>Preencha ao menos 10 caracteres</p>
+        <div ng-message='required && contactForm.nome.$dirty'>
+            <p>Preencha o nome</p>
+        </div>
+
+        <div ng-message='minlength'>
+            <p>Preencha ao menos 10 caracteres</p>
+        </div>
+
     </div>
 
     <div ng-show='contactForm.tel.$invalid  && contactForm.tel.$dirty'>

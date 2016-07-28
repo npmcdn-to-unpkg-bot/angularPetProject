@@ -22,3 +22,9 @@
 - ng-if
 - ng-include
 - form.$valid and form.$invalid
+- form.field.$error.required
+- ng-minlength
+- form.field.$error.required
+- form.field.$error.minlength
+- ng-patterns
+- form.field.$error.pattern
