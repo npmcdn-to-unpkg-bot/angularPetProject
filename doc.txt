@@ -16,5 +16,7 @@
 - ng-hide
 - ng-options
     - For select options
-- ngClass
+- ng-Class
     {classe1, classe2}
+- ng-style
+- ng-if
