@@ -1,3 +1,5 @@
+http://pt.slideshare.net/rodrigobranas/introduo-ao-angularjs-33776412
+
 - ngApp
 - ngController
     - Applyies at an view (div, table, body e etc)
@@ -28,3 +30,4 @@
 - form.field.$error.minlength
 - ng-patterns
 - form.field.$error.pattern
+- ng-messages

@@ -37,9 +37,9 @@
                ];
 
                $scope.lista = [
-                    {nome: 'Gregory', tel: '1235', cor:'blue'},
-                    {nome: 'Susy', tel: '3215', cor:'red'},
-                    {nome: 'Valdete', tel: '4565', cor:'black'},
+                    {nome: 'Gregory', tel: '1235', cor:'blue', data: new Date()},
+                    {nome: 'Susy', tel: '3215', cor:'red', data: new Date()},
+                    {nome: 'Valdete', tel: '4565', cor:'black', data: new Date()},
                ];
 
                $scope.salvar = function (contato) {
@@ -68,6 +68,8 @@
     
     <p ng-repeat='contato in lista' ng-show='debug'>{{contato}}</p>
 
+    <input type="text" ng-model='criterioBusca' placeholder="Digite sua busca">
+
     <table>
         <tr>
             <td></td>
@@ -75,13 +77,17 @@
             <td>Telefone</td>
             <td>Operadora</td>
             <td>Cor</td>
+            <td>Data</td>
         </tr>
-        <tr ng-repeat='contato in lista' ng-class='{"selecionado negrito": contato.selecionado }'>
+        <tr ng-repeat='contato in lista  | filter: "Gregory"' ng-class='{"selecionado negrito": contato.selecionado}'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
             <td>{{contato.nome}}</td>
             <td>{{contato.tel}}</td>
             <td>{{contato.operadora}}</td>
-            <td> <div style="width:20px; height:20px";" ng-style="{'background-color': contato.cor}"></div></td>
+            <td> 
+                <div style="width:20px; height:20px";" ng-style="{'background-color': contato.cor}"></div>
+            </td>
+            <td>{{contato.data | date: 'dd/MM/yyy HH:MM' }}</td>
         </tr>
     </table>
 
@@ -124,5 +130,9 @@
 
 
     <div ng-include="'footer.html'"></div>
+
+    <h3>Filters</h3>
+    {{app|uppercase}} <br>
+    {{app|lowercase}}
 </body>
 </html>
