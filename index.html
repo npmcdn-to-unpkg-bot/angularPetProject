@@ -23,9 +23,9 @@
 
         // Recovering a module and setting up a new controller
         angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope){
-               $scope.app = 'Lista Telefonica'; 
+               $scope.app = 'Lista Telefonica';
                $scope.debug = false;
-               $scope.nome = ''; 
+               $scope.nome = '';
                $scope.telefone = '';
                $scope.subtitulo = 'Subtitulo' ;
 
@@ -38,7 +38,7 @@
 
                $scope.lista = [
                     {nome: 'Gregory', tel: '1235', cor:'blue', data: new Date()},
-                    {nome: 'Susy', tel: '3215', cor:'red', data: new Date()},
+                    {nome: 'Susy', tel: '1123', cor:'red', data: new Date()},
                     {nome: 'Valdete', tel: '4565', cor:'black', data: new Date()},
                ];
 
@@ -50,7 +50,7 @@
 
                $scope.apagar = function (contatos) {
                     $scope.lista = contatos.filter(function (contato){
-                          if (!contato.selecionado) return contato;  
+                          if (!contato.selecionado) return contato;
                     });
                };
 
@@ -59,13 +59,18 @@
                         return contato.selecionado;
                     });
                };
+
+               $scope.ordenarPor = function (campo) {
+                 $scope.criterioOrdenacao = campo;
+                 $scope.direcaoOrdenacao = !$scope.direcaoOrdenacao;
+               };
         });
     </script>
 </head>
 <body ng-controller='listaTelefonicaController'>
     <h1>{{app}}</h1>
     <h3 ng-bind='subtitulo'></h3>
-    
+
     <p ng-repeat='contato in lista' ng-show='debug'>{{contato}}</p>
 
     <input type="text" ng-model='criterioBusca' placeholder="Digite sua busca">
@@ -73,19 +78,20 @@
     <table>
         <tr>
             <td></td>
-            <td>Nome</td>
-            <td>Telefone</td>
-            <td>Operadora</td>
-            <td>Cor</td>
-            <td>Data</td>
+            <td><a href="" ng-click='ordenarPor("nome")'>Nome</a></td>
+            <td><a href="" ng-click='ordenarPor("tel")'>Telefone</a></td>
+            <td><a href="" ng-click='ordenarPor("operadora")'>Operadora</a></td>
+            <td><a href="" ng-click='ordenarPor("cor")'>Cor</a></td>
+            <td>Data</a></td>
         </tr>
-        <tr ng-repeat='contato in lista | filter:{nome:criterioBusca} | orderBy: "-nome"' ng-class='{"selecionado negrito": contato.selecionado}'>
+        <tr ng-repeat='contato in lista | filter:{nome:criterioBusca} | orderBy:criterioOrdenacao:direcaoOrdenacao'
+            ng-class='{"selecionado negrito": contato.selecionado}'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
             <td>{{contato.nome}}</td>
             <td>{{contato.tel}}</td>
             <td>{{contato.operadora}}</td>
-            <td> 
-                <div style="width:20px; height:20px";" ng-style="{'background-color': contato.cor}"></div>
+            <td>
+                <div style="width:20px; height:20px"; ng-style="{'background-color': contato.cor}"></div>
             </td>
             <td>{{contato.data | date: 'dd/MM/yyy HH:MM' }}</td>
         </tr>
@@ -119,8 +125,8 @@
         <p>Preencha o telefone com o formato DDDDD-DDDD</p>
     </div>
 
-    <select name="operadoras" id="oper" ng-model='contato.operadora' 
-        ng-options='operadora.codigo as operadora.nome group by operadora.categ for operadora in operadoras'>
+    <select name="operadoras" id="oper" ng-model='contato.operadora'
+        ng-options='operadora.codigo as operadora.nome group by operadora.categ for operadora in operadoras | orderBy: "nome"'>
         <option value="">Selecione uma operadora</option>
     </select>
 
@@ -129,7 +135,7 @@
     <!-- {{10==2}} -->
 
 
-    <div ng-include="'footer.html'"></div>
+    <!-- <div ng-include="'footer.html'"></div> -->
 
     <h3>Filters</h3>
     {{app|uppercase}} <br>
