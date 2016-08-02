@@ -24,7 +24,7 @@
         angular.module('listaTelefonica', ['ngMessages']);
 
         // Recovering a module and setting up a new controller
-        angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope){
+        angular.module('listaTelefonica').controller('listaTelefonicaController', function ($scope, $filter){
                $scope.app = 'Lista Telefonica';
                $scope.debug = false;
                $scope.nome = '';
@@ -39,7 +39,7 @@
                ];
 
                $scope.lista = [
-                    {nome: 'Gregory', tel: '1235', cor:'blue', data: new Date()},
+                    {nome: $filter('uppercase')('Gregory'), tel: '1235', cor:'blue', data: new Date()},
                     {nome: 'Susy', tel: '1123', cor:'red', data: new Date()},
                     {nome: 'Valdete', tel: '4565', cor:'black', data: new Date()},
                ];
