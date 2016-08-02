@@ -76,6 +76,7 @@
     <p ng-repeat='contato in lista' ng-show='debug'>{{contato}}</p>
 
     <input type="text" ng-model='criterioBusca' placeholder="Digite sua busca">
+    <input type="text" ng-model='limit'>
 
     <table>
         <tr>
@@ -86,10 +87,11 @@
             <td><a href="" ng-click='ordenarPor("cor")'>Cor</a></td>
             <td>Data</a></td>
         </tr>
-        <tr ng-repeat='contato in lista | filter:{nome:criterioBusca} | orderBy:criterioOrdenacao:direcaoOrdenacao'
+        <tr ng-repeat='contato in lista | filter:{nome:criterioBusca} |
+                         limitTo: limit | orderBy:criterioOrdenacao:direcaoOrdenacao'
             ng-class='{"selecionado negrito": contato.selecionado}'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
-            <td>{{contato.nome}}</td>
+            <td>{{contato.nome | limitTo:7}}</td>
             <td>{{contato.tel}}</td>
             <td>{{contato.operadora}}</td>
             <td>
@@ -128,7 +130,9 @@
     </div>
 
     <select name="operadoras" id="oper" ng-model='contato.operadora'
-        ng-options='operadora.codigo as operadora.nome + "(" + (operadora.preco | currency) + ")" group by operadora.categ for operadora in operadoras | orderBy: "nome"'>
+        ng-options='operadora.codigo as operadora.nome +
+          "(" + (operadora.preco | currency) + ")" group by operadora.categ
+          for operadora in operadoras | orderBy: "nome"'>
         <option value="">Selecione uma operadora</option>
     </select>
 
