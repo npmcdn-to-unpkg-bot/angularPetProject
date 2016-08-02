@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax Experience</title>
+
+    <script type="text/javascript">
+      function getContent(xhttp){
+        document.getElementById('ajax').innerHTML = xhttp;
+      }
+
+      function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            console.log('oii' + xhttp.responseText);
+            getContent(xhttp.responseText);
+          }
+        };
+        xhttp.open(
+          "GET", "gp.html", true);
+        xhttp.send();
+      }
+
+    </script>
+  </head>
+  <body>
+
+    <button type="button" name="button" onclick="loadDoc()">Buscar</button>
+    <div id="ajax"></div>
+
+  </body>
+</html>
