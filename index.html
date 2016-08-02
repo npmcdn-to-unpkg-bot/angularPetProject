@@ -17,6 +17,8 @@
     </style>
     <script type='text/javascript' src='angular.js'></script>
     <script type='text/javascript' src='angular-messages.js'></script>
+    <script type='text/javascript' src='angular-locale_fr.js'></script>
+    <script type='text/javascript' src='angular-locale_pt-br.js'></script>
     <script>
         // Creating a module
         angular.module('listaTelefonica', ['ngMessages']);
@@ -30,10 +32,10 @@
                $scope.subtitulo = 'Subtitulo' ;
 
                $scope.operadoras = [
-                    {codigo: 1, nome:'Vivo', categ: 'celular'},
-                    {codigo: 2, nome:'Claro', categ: 'celular'},
-                    {codigo: 3, nome:'Tim', categ: 'celular'},
-                    {codigo: 4, nome:'Oi', categ: 'Fixo'},
+                    {codigo: 1, nome:'Vivo', categ: 'celular', preco: 10},
+                    {codigo: 2, nome:'Claro', categ: 'celular', preco: 20},
+                    {codigo: 3, nome:'Tim', categ: 'celular', preco: 30},
+                    {codigo: 4, nome:'Oi', categ: 'Fixo', preco: 40},
                ];
 
                $scope.lista = [
@@ -93,7 +95,7 @@
             <td>
                 <div style="width:20px; height:20px"; ng-style="{'background-color': contato.cor}"></div>
             </td>
-            <td>{{contato.data | date: 'dd/MM/yyy HH:MM' }}</td>
+            <td>{{contato.data | date: 'EEEE MMM dd/MM/yyy HH:MM' }}</td>
         </tr>
     </table>
 
@@ -126,7 +128,7 @@
     </div>
 
     <select name="operadoras" id="oper" ng-model='contato.operadora'
-        ng-options='operadora.codigo as operadora.nome group by operadora.categ for operadora in operadoras | orderBy: "nome"'>
+        ng-options='operadora.codigo as operadora.nome + "(" + (operadora.preco | currency) + ")" group by operadora.categ for operadora in operadoras | orderBy: "nome"'>
         <option value="">Selecione uma operadora</option>
     </select>
 
