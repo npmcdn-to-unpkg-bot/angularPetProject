@@ -13,6 +13,8 @@
     <script type='text/javascript' src='js/controllers/listaTelefonicaController.js'></script>
     <script type='text/javascript' src='js/services/contatosAPIService.js'></script>
     <script type='text/javascript' src='js/services/operadorasAPIService.js'></script>
+    <script type='text/javascript' src='js/services/serialGeneratorService.js'></script>
+    <script type='text/javascript' src='js/config/serialGeneratorConfig.js'></script>
     <script type='text/javascript' src='js/values/configValue.js'></script>
 
     <script type='text/javascript' src='angular-messages.js'></script>
@@ -35,6 +37,7 @@
     <table>
         <tr>
             <td></td>
+            <td>Serial</td>
             <td><a href="" ng-click='ordenarPor("nome")'>Nome</a></td>
             <td><a href="" ng-click='ordenarPor("tel")'>Telefone</a></td>
             <td><a href="" ng-click='ordenarPor("operadora")'>Operadora</a></td>
@@ -45,6 +48,7 @@
                          limitTo: limit | orderBy:criterioOrdenacao:direcaoOrdenacao'
             ng-class='{"selecionado negrito": contato.selecionado}'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
+            <td>{{contato.serial}}</td>
             <td>{{contato.nome | limitTo:7}}</td>
             <td>{{contato.tel}}</td>
             <td>{{contato.operadora.nome}}</td>

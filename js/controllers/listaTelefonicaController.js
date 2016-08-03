@@ -1,6 +1,6 @@
 // Recovering a module and setting up a new controller
 angular.module('listaTelefonica').controller('listaTelefonicaController',
-  function ($scope, $filter, contatosAPI, operadorasAPI){
+  function ($scope, $filter, contatosAPI, operadorasAPI, serialGenerator){
        $scope.app = 'Lista Telefonica';
        $scope.debug = false;
        $scope.nome = '';
@@ -26,6 +26,8 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
 
 
        $scope.salvar = function (contato) {
+         contato.serial = serialGenerator.generate;
+            console.log(contato);
             contatosAPI.salvarContato(contato).success(function (data){
               delete $scope.contato;
               $scope.contactForm.$setPristine();

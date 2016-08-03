@@ -25,6 +25,7 @@ class Contato(models.Model):
     nome = models.CharField(max_length=20)
     tel = models.CharField(max_length=20)
     cor = models.CharField(max_length=4, choices=COR, default='blue')
+    serial = models.CharField(max_length=20, default='0000')
     data = models.DateTimeField(auto_now_add=True)
     operadora = models.ForeignKey(Operadora)
 
