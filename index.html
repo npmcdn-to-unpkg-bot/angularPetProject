@@ -4,82 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
-    <link rel="stylesheet" href="">
-
-    <style>
-        .selecionado {
-            background-color: yellow;
-        }
-
-        .negrito {
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
     <script type='text/javascript' src='angular.js'></script>
+    <script type='text/javascript' src='js/app.js'></script>
+    <script type='text/javascript' src='js/controllers/listaTelefonicaController.js'></script>
     <script type='text/javascript' src='angular-messages.js'></script>
     <script type='text/javascript' src='angular-locale_fr.js'></script>
     <script type='text/javascript' src='angular-locale_pt-br.js'></script>
-    <script>
-        // Creating a module
-        angular.module('listaTelefonica', ['ngMessages']);
-
-        // Recovering a module and setting up a new controller
-        angular.module('listaTelefonica').controller('listaTelefonicaController',
-          function ($scope, $filter, $http){
-               $scope.app = 'Lista Telefonica';
-               $scope.debug = false;
-               $scope.nome = '';
-               $scope.telefone = '';
-               $scope.subtitulo = 'Subtitulo' ;
-               $scope.operadoras = [];
-               $scope.lista = [];
-
-               var carregarContatos = function (){
-                 $http.get('http://localhost:8000/contatos/').success(function (data){
-                   $scope.lista = data;
-                 });
-               };
-
-               var carregarOperadoras = function (){
-                 $http.get('http://localhost:8000/operadoras/').success(function (data){
-                   $scope.operadoras = data;
-                 });
-               };
-
-               carregarOperadoras();
-               carregarContatos();
-
-
-               $scope.salvar = function (contato) {
-                    $http.post('http://localhost:8000/contatos/', contato).success(function (data){
-                      delete $scope.contato;
-                      $scope.contactForm.$setPristine();
-                      carregarContatos();
-                    });
-               }
-
-               $scope.apagar = function (contatos) {
-                    $scope.lista = contatos.filter(function (contato){
-                          if (!contato.selecionado) return contato;
-                    });
-               };
-
-               $scope.isContatoSelecionado = function (contatos) {
-                    return contatos.some(function (contato){
-                        return contato.selecionado;
-                    });
-               };
-
-               $scope.ordenarPor = function (campo) {
-                 $scope.criterioOrdenacao = campo;
-                 $scope.direcaoOrdenacao = !$scope.direcaoOrdenacao;
-               };
-        });
-    </script>
 </head>
 <body ng-controller='listaTelefonicaController'>
     <h1>{{app}}</h1>
     <h3 ng-bind='subtitulo'></h3>
+
+    <div>
+      {{message}}
+    </div>
 
     <p ng-repeat='contato in lista' ng-show='debug'>{{contato}}</p>
 
