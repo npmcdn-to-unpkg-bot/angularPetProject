@@ -1,6 +1,6 @@
 // Recovering a module and setting up a new controller
 angular.module('listaTelefonica').controller('listaTelefonicaController',
-  function ($scope, $filter, $http, contatosAPI){
+  function ($scope, $filter, contatosAPI, operadorasAPI){
        $scope.app = 'Lista Telefonica';
        $scope.debug = false;
        $scope.nome = '';
@@ -16,8 +16,8 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
        };
 
        var carregarOperadoras = function (){
-         contatosAPI.getOperadoras().success(function (data){
-           $scope.operadoras = data;
+         operadorasAPI.getOperadoras().success(function (data){
+         $scope.operadoras = data;
          });
        };
 
