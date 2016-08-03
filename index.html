@@ -31,9 +31,11 @@
                $scope.nome = '';
                $scope.telefone = '';
                $scope.subtitulo = 'Subtitulo' ;
+               $scope.operadoras = [];
+               $scope.lista = [];
 
                var carregarContatos = function (){
-                 $http.get('http://localhost/gp.html').success(function (data){
+                 $http.get('http://localhost:8000/contatos/').success(function (data){
                    $scope.lista = data;
                  });
                };
@@ -47,12 +49,9 @@
                carregarOperadoras();
                carregarContatos();
 
-               $scope.operadoras = [];
-
-               $scope.lista = [];
 
                $scope.salvar = function (contato) {
-                    $http.post('http://localhost/gp.html').success(function (data){
+                    $http.post('http://localhost:8000/contatos/', contato).success(function (data){
                       delete $scope.contato;
                       $scope.contactForm.$setPristine();
                       carregarContatos();
@@ -114,8 +113,15 @@
     Valido: {{contactForm.$valid}}
     Invalido: {{contactForm.$invalid}}
     <form name='contactForm'>
-        <input type="text" placeholder="nome" ng-model='contato.nome' ng-required="true" name="nome" ng-minlength="10">
+        <input type="text" placeholder="nome" ng-model='contato.nome' ng-required="true" name="nome" ng-minlength="5">
         <input type="text" placeholder="telefone" ng-model="contato.tel" ng-required="true" name="tel" ng-pattern="/^\d{4,5}-\d{4}$/">
+
+        <select name="operadoras" id="oper" ng-model='contato.operadora'
+          ng-options='operadora.url as operadora.nome +
+          "(" + (operadora.preco | currency) + ")" group by operadora.categ
+          for operadora in operadoras | orderBy: "nome"'>
+          <option value="">Selecione uma operadora</option>
+        </select>
     </form>
 
     <div ng-messages='contactForm.nome.$error'>
@@ -138,12 +144,6 @@
         <p>Preencha o telefone com o formato DDDDD-DDDD</p>
     </div>
 
-    <select name="operadoras" id="oper" ng-model='contato.operadora'
-        ng-options='operadora as operadora.nome +
-          "(" + (operadora.preco | currency) + ")" group by operadora.categ
-          for operadora in operadoras | orderBy: "nome"'>
-        <option value="">Selecione uma operadora</option>
-    </select>
 
     <button ng-click='salvar(contato)' ng-disabled='contactForm.$invalid'>Salvar</button>
     <button ng-click='apagar(lista)' ng-show='isContatoSelecionado(lista)' ng-disabled='!isContatoSelecionado(lista)'>Apagar</button>

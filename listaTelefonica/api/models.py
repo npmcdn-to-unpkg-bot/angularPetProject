@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 from django.db import models
 
 COR = (
-    ('bl','black'),
-    ('bu','blue'),
-    ('ye','yellow'),
-    ('rd','red'),
-    ('gr','green'),
+    ('black','black'),
+    ('blue','blue'),
+    ('yellow','yellow'),
+    ('red','red'),
+    ('green','green'),
 )
 
 class Operadora(models.Model):
@@ -24,8 +24,9 @@ class Contato(models.Model):
     """docstring for Operadora"""
     nome = models.CharField(max_length=20)
     tel = models.CharField(max_length=20)
-    cor = models.CharField(max_length=2, choices=COR, default='bl')
-    data = models.DateTimeField()
+    cor = models.CharField(max_length=4, choices=COR, default='blue')
+    data = models.DateTimeField(auto_now_add=True)
+    operadora = models.ForeignKey(Operadora)
 
     def __str__(self):
         return self.nome
