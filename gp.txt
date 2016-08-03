@@ -1,0 +1,4 @@
+[
+        {nome: 'Gregory', idade:28},
+        {nome: 'Susy', idade: 26},
+]
