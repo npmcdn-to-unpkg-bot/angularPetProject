@@ -1,6 +1,6 @@
 // Recovering a module and setting up a new controller
 angular.module('listaTelefonica').controller('listaTelefonicaController',
-  function ($scope, $filter, $http){
+  function ($scope, $filter, $http, contatosAPI){
        $scope.app = 'Lista Telefonica';
        $scope.debug = false;
        $scope.nome = '';
@@ -10,13 +10,13 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
        $scope.lista = [];
 
        var carregarContatos = function (){
-         $http.get('http://localhost:8000/contatos/').success(function (data){
+         contatosAPI.getContatos().success(function (data){
            $scope.lista = data;
          });
        };
 
        var carregarOperadoras = function (){
-         $http.get('http://localhost:8000/operadoras/').success(function (data){
+         contatosAPI.getOperadoras().success(function (data){
            $scope.operadoras = data;
          });
        };
@@ -26,7 +26,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
 
 
        $scope.salvar = function (contato) {
-            $http.post('http://localhost:8000/contatos/', contato).success(function (data){
+            contatosAPI.salvarContato(contato).success(function (data){
               delete $scope.contato;
               $scope.contactForm.$setPristine();
               carregarContatos();
