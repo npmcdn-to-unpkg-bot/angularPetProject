@@ -29,9 +29,12 @@
 
     scope: {{$id}}
     <h1>>>{{error}}</h1>
-    <ui-alert title='Problema ao carregar os dados:directive:title'
-              message=error></ui-alert>
+    <ui-alert title='Problema ao carregar os dados:directive:title'>
+      Nao foi possivel carregar os dados:transclude
+    </ui-alert>
 
+    <ui-alert title="Titulo do alert"></ui-alert>
+      Mensagem do alert
     <div>
       {{message}}
     </div>

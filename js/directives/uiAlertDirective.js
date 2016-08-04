@@ -6,7 +6,8 @@ angular.module('listaTelefonica').directive('uiAlert', function(){
     scope: {
       topic: '@title',
       message: '=message'
-    }
+    },
+    transclude: true
     // restrict: 'A'
     // restrict: 'C'
     // restrict: 'AE'
