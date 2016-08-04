@@ -17,6 +17,7 @@
     <script type='text/javascript' src='js/config/serialGeneratorConfig.js'></script>
     <script type='text/javascript' src='js/values/configValue.js'></script>
     <script type='text/javascript' src='js/filters/elipsisFilter.js'></script>
+    <script type='text/javascript' src='js/directives/uiAlertDirective.js'></script>
 
     <script type='text/javascript' src='angular-messages.js'></script>
     <script type='text/javascript' src='angular-locale_fr.js'></script>
@@ -25,6 +26,10 @@
 <body ng-controller='listaTelefonicaController'>
     <h1>{{app}}</h1>
     <h3 ng-bind='subtitulo'></h3>
+
+    <div ui-alert>
+
+    </div>
 
     <div>
       {{message}}
@@ -101,7 +106,7 @@
     <!-- {{10==2}} -->
 
 
-    <!-- <div ng-include="'footer.html'"></div> -->
+    <div ng-include="'view/footer.html'"></div>
 
     <h3>Filters</h3>
     {{app|uppercase}} <br>
