@@ -27,9 +27,10 @@
     <h1>{{app}}</h1>
     <h3 ng-bind='subtitulo'></h3>
 
-    <ui-alert></ui-alert>
-
-    </div>
+    scope: {{$id}}
+    <h1>>>{{error}}</h1>
+    <ui-alert title='Problema ao carregar os dados:directive:title'
+              message=error></ui-alert>
 
     <div>
       {{message}}

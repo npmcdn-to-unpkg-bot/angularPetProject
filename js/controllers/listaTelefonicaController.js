@@ -5,7 +5,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
        $scope.debug = false;
        $scope.nome = '';
        $scope.telefone = '';
-       $scope.subtitulo = 'Subtitulo' ;
+       $scope.subtitulo = 'Subtitulo usando ng-bind' ;
        $scope.operadoras = [];
        $scope.lista = [];
 
@@ -13,7 +13,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',
          contatosAPI.getContatos().success(function (data){
            $scope.lista = data;
          }).error(function (){
-           $scope.message = 'Nao foi possivel carregar os dados';
+           $scope.error = 'Nao foi possivel carregar os dados:controller';
          });
        };
 
