@@ -16,6 +16,7 @@
     <script type='text/javascript' src='js/services/serialGeneratorService.js'></script>
     <script type='text/javascript' src='js/config/serialGeneratorConfig.js'></script>
     <script type='text/javascript' src='js/values/configValue.js'></script>
+    <script type='text/javascript' src='js/filters/elipsisFilter.js'></script>
 
     <script type='text/javascript' src='angular-messages.js'></script>
     <script type='text/javascript' src='angular-locale_fr.js'></script>
@@ -49,7 +50,7 @@
             ng-class='{"selecionado negrito": contato.selecionado}'>
             <td><input type="checkbox" ng-model='contato.selecionado'></td>
             <td>{{contato.serial}}</td>
-            <td>{{contato.nome | limitTo:7}}</td>
+            <td>{{contato.nome | elipsis:5}}</td>
             <td>{{contato.tel}}</td>
             <td>{{contato.operadora.nome}}</td>
             <td>
